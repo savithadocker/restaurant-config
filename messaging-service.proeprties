@@ -1,0 +1,25 @@
+server:
+  port: 9000
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  application:
+    name: messaging-service
+  cloud:
+    config:
+      uri: http://localhost:51000
+    dicovery:
+      service-id: config-server
+      enabled: true
+management:
+  security:
+    enabled: false
+eureka:
+  client:
+    serviceUrl:
+      defaultZone=${EUREKA_URI:http://localhost:8761/eureka}
